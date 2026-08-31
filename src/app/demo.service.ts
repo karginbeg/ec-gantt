@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { GanttRow, GanttTimespan } from 'ec-gantt';
+import { GanttRow, GanttTimespan } from '@karginbeg/ec-gantt';
 
 @Injectable({
   providedIn: 'root'

@@ -1,5 +1,5 @@
 {
-  "name": "ec-gantt",
+  "name": "@karginbeg/ec-gantt",
   "version": "1.0.1",
   "description": "High-performance, feature-rich Angular Standalone Gantt Chart Component",
   "author": "Erkan Çömez (https://github.com/erkancomez)",
@@ -14,7 +14,7 @@
   "keywords": [
     "angular",
     "gantt",
-    "ec-gantt",
+    "@karginbeg/ec-gantt",
     "ec-gantt",
     "timeline",
     "project-management",

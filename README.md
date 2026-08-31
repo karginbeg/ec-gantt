@@ -2,7 +2,7 @@
 
 > **High-Performance, Feature-Rich Standalone Angular Gantt Chart Component**
 
-[![npm version](https://img.shields.io/npm/v/ec-gantt.svg?color=blue)](https://www.npmjs.com/package/ec-gantt)
+[![npm version](https://img.shields.io/npm/v/@karginbeg/ec-gantt.svg?color=blue)](https://www.npmjs.com/package/@karginbeg/ec-gantt)
 [![license](https://img.shields.io/npm/l/ec-gantt.svg)](LICENSE)
 [![angular](https://img.shields.io/badge/angular-18%2B%20%7C%2019%2B%20%7C%2020%2B%20%7C%2021%2B%20%7C%2022%2B-red.svg)](https://angular.dev)
 
@@ -34,7 +34,7 @@ Developed by **[Erkan Çömez](https://github.com/erkancomez)**.
 ## 📦 Installation
 
 ```bash
-npm install ec-gantt
+npm install @karginbeg/ec-gantt
 ```
 
 ---
@@ -45,7 +45,7 @@ Import `EcGantt` directly in your Standalone Component:
 
 ```typescript
 import { Component } from '@angular/core';
-import { EcGantt, GanttConfig, GanttRow, GanttApi } from 'ec-gantt';
+import { EcGantt, GanttConfig, GanttRow, GanttApi } from '@karginbeg/ec-gantt';
 
 @Component({
   selector: 'app-project-planner',

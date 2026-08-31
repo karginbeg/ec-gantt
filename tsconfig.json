@@ -4,7 +4,7 @@
   "compileOnSave": false,
   "compilerOptions": {
     "paths": {
-      "ec-gantt": [
+      "@karginbeg/ec-gantt": [
         "./projects/ec-gantt/src/public-api.ts",
         "./dist/ec-gantt"
       ]

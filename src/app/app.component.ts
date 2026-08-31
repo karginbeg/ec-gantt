@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { AfterViewInit, Component, inject, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { CurrentDateMode, EcGantt, GanttApi, GanttConfig, GanttRow, GanttTimespan, SideMode, SortMode, ViewScale } from 'ec-gantt';
+import { CurrentDateMode, EcGantt, GanttApi, GanttConfig, GanttRow, GanttTimespan, SideMode, SortMode, ViewScale } from '@karginbeg/ec-gantt';
 import { DemoService } from './demo.service';
 
 @Component({
