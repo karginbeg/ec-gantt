@@ -6,14 +6,16 @@
         <span class="app-brand-icon">📊</span>
         <div>
           <h1 class="app-brand-title">ec-gantt - Gantt chart component for Angular 22 (Demo)</h1>
-          <p class="app-brand-subtitle">Full Replica with Interactive Task Linking, TreeTable, Dependencies & Timespans</p>
+          <p class="app-brand-subtitle">
+            Full Replica with Interactive Task Linking, TreeTable, Dependencies & Timespans
+          </p>
         </div>
       </div>
       <div class="app-nav-links">
         <a href="https://github.com/erkancomez/ec-gantt" target="_blank">
           <span>📚 Documentation</span>
         </a>
-        <span style="color: #475569;">|</span>
+        <span style="color: #475569">|</span>
         <a href="https://github.com/erkancomez/ec-gantt" target="_blank">
           <span>🐙 GitHub</span>
         </a>
@@ -23,7 +25,6 @@
 
   <!-- Main Container -->
   <div class="app-main">
-    
     <!-- ACCORDION PANEL 1: OPTIONS -->
     <div class="panel-card">
       <button (click)="optionsCollapsed = !optionsCollapsed" class="panel-header-button">
@@ -32,14 +33,17 @@
       </button>
 
       @if (!optionsCollapsed) {
-        <div class="panel-content" style="display: flex; flex-direction: column; gap: 0.75rem;">
+        <div class="panel-content" style="display: flex; flex-direction: column; gap: 0.75rem">
           <!-- ROW 1 OF OPTIONS TOOLBAR -->
           <div class="options-grid">
-            
             <!-- Scale Selector -->
             <div class="form-group">
               <label class="form-label">🔍 Scale</label>
-              <select [(ngModel)]="ganttConfig.viewScale" (change)="onConfigChange()" class="form-control">
+              <select
+                [(ngModel)]="ganttConfig.viewScale"
+                (change)="onConfigChange()"
+                class="form-control"
+              >
                 @for (s of scales; track s) {
                   <option [value]="s">{{ s }}</option>
                 }
@@ -49,7 +53,11 @@
             <!-- Sort Selector -->
             <div class="form-group">
               <label class="form-label">⇅ Sort</label>
-              <select [(ngModel)]="ganttConfig.sortMode" (change)="onConfigChange()" class="form-control">
+              <select
+                [(ngModel)]="ganttConfig.sortMode"
+                (change)="onConfigChange()"
+                class="form-control"
+              >
                 @for (m of sortModes; track m) {
                   <option [value]="m">{{ m }}</option>
                 }
@@ -59,31 +67,51 @@
             <!-- Filter Tasks -->
             <div class="form-group">
               <label class="form-label">🔍 Filter Tasks</label>
-              <input type="text" [(ngModel)]="ganttConfig.filterTask" (ngModelChange)="onConfigChange()" placeholder="" class="form-control" style="width: 100px;">
+              <input
+                type="text"
+                [(ngModel)]="ganttConfig.filterTask"
+                (ngModelChange)="onConfigChange()"
+                placeholder=""
+                class="form-control"
+                style="width: 100px"
+              />
             </div>
 
             <!-- Filter Rows -->
             <div class="form-group">
               <label class="form-label">🔍 Filter Rows</label>
-              <input type="text" [(ngModel)]="ganttConfig.filterRow" (ngModelChange)="onConfigChange()" placeholder="" class="form-control" style="width: 100px;">
+              <input
+                type="text"
+                [(ngModel)]="ganttConfig.filterRow"
+                (ngModelChange)="onConfigChange()"
+                placeholder=""
+                class="form-control"
+                style="width: 100px"
+              />
             </div>
 
             <!-- Today Line -->
             <div class="form-group">
               <label class="form-label">⏰ Today</label>
-              <select [(ngModel)]="ganttConfig.currentDate" (change)="onConfigChange()" class="form-control">
+              <select
+                [(ngModel)]="ganttConfig.currentDate"
+                (change)="onConfigChange()"
+                class="form-control"
+              >
                 @for (d of currentDateModes; track d) {
                   <option [value]="d">{{ d }}</option>
                 }
               </select>
             </div>
 
-
-
             <!-- Out of range -->
             <div class="form-group">
               <label class="form-label">✂ Out of range</label>
-              <select [(ngModel)]="ganttConfig.taskOutOfRange" (change)="onConfigChange()" class="form-control">
+              <select
+                [(ngModel)]="ganttConfig.taskOutOfRange"
+                (change)="onConfigChange()"
+                class="form-control"
+              >
                 @for (o of outOfRangeModes; track o) {
                   <option [value]="o">{{ o }}</option>
                 }
@@ -94,15 +122,25 @@
             <div class="form-group">
               <label class="form-label">✏️ Edit</label>
               <div class="button-group">
-                <button (click)="ganttConfig.drawTask = !ganttConfig.drawTask; onConfigChange()"
-                        class="btn" [style.background-color]="ganttConfig.drawTask ? '#2563eb' : '#64748b'">
+                <button
+                  (click)="ganttConfig.drawTask = !ganttConfig.drawTask; onConfigChange()"
+                  class="btn"
+                  [style.background-color]="ganttConfig.drawTask ? '#2563eb' : '#64748b'"
+                >
                   Draw
                 </button>
-                <button (click)="ganttConfig.readOnly = !ganttConfig.readOnly; onConfigChange()"
-                        class="btn" [style.background-color]="ganttConfig.readOnly ? '#e11d48' : '#64748b'">
+                <button
+                  (click)="ganttConfig.readOnly = !ganttConfig.readOnly; onConfigChange()"
+                  class="btn"
+                  [style.background-color]="ganttConfig.readOnly ? '#e11d48' : '#64748b'"
+                >
                   Read Only
                 </button>
-                <select [(ngModel)]="ganttConfig.stepUnit" (change)="onConfigChange()" class="form-control">
+                <select
+                  [(ngModel)]="ganttConfig.stepUnit"
+                  (change)="onConfigChange()"
+                  class="form-control"
+                >
                   @for (unit of stepUnits; track unit) {
                     <option [value]="unit">{{ unit }}</option>
                   }
@@ -114,12 +152,23 @@
             <div class="form-group">
               <label class="form-label">📝 Content</label>
               <div class="button-group">
-                <button (click)="ganttConfig.rowContentEnabled = !ganttConfig.rowContentEnabled; onConfigChange()"
-                        class="btn" [style.background-color]="ganttConfig.rowContentEnabled ? '#2563eb' : '#64748b'">
+                <button
+                  (click)="
+                    ganttConfig.rowContentEnabled = !ganttConfig.rowContentEnabled; onConfigChange()
+                  "
+                  class="btn"
+                  [style.background-color]="ganttConfig.rowContentEnabled ? '#2563eb' : '#64748b'"
+                >
                   Row Content
                 </button>
-                <button (click)="ganttConfig.taskContentEnabled = !ganttConfig.taskContentEnabled; onConfigChange()"
-                        class="btn" [style.background-color]="ganttConfig.taskContentEnabled ? '#2563eb' : '#64748b'">
+                <button
+                  (click)="
+                    ganttConfig.taskContentEnabled = !ganttConfig.taskContentEnabled;
+                    onConfigChange()
+                  "
+                  class="btn"
+                  [style.background-color]="ganttConfig.taskContentEnabled ? '#2563eb' : '#64748b'"
+                >
                   Task Content
                 </button>
               </div>
@@ -129,16 +178,35 @@
             <div class="form-group">
               <label class="form-label">🧲 Magnet</label>
               <div class="button-group">
-                <button (click)="toggleMagnetMode('daily')"
-                        class="btn" [style.background-color]="ganttConfig.magnetMode === 'daily' && ganttConfig.magnet ? '#2563eb' : '#64748b'">
+                <button
+                  (click)="toggleMagnetMode('daily')"
+                  class="btn"
+                  [style.background-color]="
+                    ganttConfig.magnetMode === 'daily' && ganttConfig.magnet ? '#2563eb' : '#64748b'
+                  "
+                >
                   Daily
                 </button>
-                <button (click)="toggleMagnetMode('timeframes')"
-                        class="btn" [style.background-color]="ganttConfig.magnetMode === 'timeframes' && ganttConfig.magnet ? '#2563eb' : '#64748b'">
+                <button
+                  (click)="toggleMagnetMode('timeframes')"
+                  class="btn"
+                  [style.background-color]="
+                    ganttConfig.magnetMode === 'timeframes' && ganttConfig.magnet
+                      ? '#2563eb'
+                      : '#64748b'
+                  "
+                >
                   TimeFrames
                 </button>
-                <button (click)="ganttConfig.magnetMode = 'none'; ganttConfig.magnet = false; onConfigChange()"
-                        class="btn" [style.background-color]="!ganttConfig.magnet || ganttConfig.magnetMode === 'none' ? '#e11d48' : '#64748b'">
+                <button
+                  (click)="
+                    ganttConfig.magnetMode = 'none'; ganttConfig.magnet = false; onConfigChange()
+                  "
+                  class="btn"
+                  [style.background-color]="
+                    !ganttConfig.magnet || ganttConfig.magnetMode === 'none' ? '#e11d48' : '#64748b'
+                  "
+                >
                   Kapalı
                 </button>
               </div>
@@ -148,14 +216,20 @@
             <div class="form-group">
               <label class="form-label">⇅ Layout</label>
               <div class="button-group">
-                <button (click)="toggleHeightFrame()"
-                        class="btn" [style.background-color]="heightToggleEnabled ? '#2563eb' : '#64748b'"
-                        title="Çerçeve yüksekliğini 500px yapar / esnek yapar">
+                <button
+                  (click)="toggleHeightFrame()"
+                  class="btn"
+                  [style.background-color]="heightToggleEnabled ? '#2563eb' : '#64748b'"
+                  title="Çerçeve yüksekliğini 500px yapar / esnek yapar"
+                >
                   Height {{ heightToggleEnabled ? '(500px)' : '(Auto)' }}
                 </button>
-                <button (click)="toggleWidthFrame()"
-                        class="btn" [style.background-color]="widthToggleEnabled ? '#2563eb' : '#64748b'"
-                        title="Çerçeve genişliğini 600px yapar / esnek yapar">
+                <button
+                  (click)="toggleWidthFrame()"
+                  class="btn"
+                  [style.background-color]="widthToggleEnabled ? '#2563eb' : '#64748b'"
+                  title="Çerçeve genişliğini 600px yapar / esnek yapar"
+                >
                   Width {{ widthToggleEnabled ? '(600px)' : '(Auto)' }}
                 </button>
               </div>
@@ -164,7 +238,11 @@
             <!-- Side Mode Selector -->
             <div class="form-group">
               <label class="form-label">📊 Side</label>
-              <select [(ngModel)]="ganttConfig.sideMode" (change)="onConfigChange()" class="form-control">
+              <select
+                [(ngModel)]="ganttConfig.sideMode"
+                (change)="onConfigChange()"
+                class="form-control"
+              >
                 @for (s of sideModes; track s) {
                   <option [value]="s">{{ s }}</option>
                 }
@@ -174,7 +252,11 @@
             <!-- Groups -->
             <div class="form-group">
               <label class="form-label">⚙ Groups</label>
-              <select [(ngModel)]="ganttConfig.groupDisplayMode" (change)="onConfigChange()" class="form-control">
+              <select
+                [(ngModel)]="ganttConfig.groupDisplayMode"
+                (change)="onConfigChange()"
+                class="form-control"
+              >
                 @for (g of groupDisplayModes; track g) {
                   <option [value]="g">{{ g }}</option>
                 }
@@ -184,7 +266,11 @@
             <!-- Task Overlap Mode -->
             <div class="form-group">
               <label class="form-label">🔀 Overlap</label>
-              <select [(ngModel)]="ganttConfig.taskOverlapMode" (change)="onConfigChange()" class="form-control">
+              <select
+                [(ngModel)]="ganttConfig.taskOverlapMode"
+                (change)="onConfigChange()"
+                class="form-control"
+              >
                 @for (o of overlapModes; track o) {
                   <option [value]="o">{{ o }}</option>
                 }
@@ -194,36 +280,69 @@
             <!-- Zoom -->
             <div class="form-group">
               <label class="form-label">🔍 Zoom</label>
-              <input type="number" [(ngModel)]="ganttConfig.zoom" (ngModelChange)="onConfigChange()" step="0.1" min="0.2" max="3" class="form-control" style="width: 70px;">
+              <input
+                type="number"
+                [(ngModel)]="ganttConfig.zoom"
+                (ngModelChange)="onConfigChange()"
+                step="0.1"
+                min="0.2"
+                max="3"
+                class="form-control"
+                style="width: 70px"
+              />
             </div>
 
             <!-- Resizable -->
             <div class="form-group">
               <label class="form-label">⤢ Resizable</label>
-              <button (click)="ganttConfig.allowSideResizing = !ganttConfig.allowSideResizing; onConfigChange()"
-                      class="btn" [style.background-color]="ganttConfig.allowSideResizing ? '#2563eb' : '#64748b'">
+              <button
+                (click)="
+                  ganttConfig.allowSideResizing = !ganttConfig.allowSideResizing; onConfigChange()
+                "
+                class="btn"
+                [style.background-color]="ganttConfig.allowSideResizing ? '#2563eb' : '#64748b'"
+              >
                 {{ ganttConfig.allowSideResizing ? 'Enabled' : 'Disabled' }}
               </button>
             </div>
-
           </div>
 
           <!-- ROW 2 OF OPTIONS TOOLBAR -->
-          <div class="options-grid" style="border-top: 1px dashed var(--color-border); padding-top: 0.75rem;">
-            
+          <div
+            class="options-grid"
+            style="border-top: 1px dashed var(--color-border); padding-top: 0.75rem"
+          >
             <!-- Date Range -->
             <div class="form-group">
               <label class="form-label">📅 Date range</label>
               <div class="button-group">
-                <input type="text" [(ngModel)]="dateFromStr" (ngModelChange)="onConfigChange()" placeholder="From" class="form-control" style="width: 110px;">
-                <input type="text" [(ngModel)]="dateToStr" (ngModelChange)="onConfigChange()" placeholder="To" class="form-control" style="width: 110px;">
+                <input
+                  type="text"
+                  [(ngModel)]="dateFromStr"
+                  (ngModelChange)="onConfigChange()"
+                  placeholder="From"
+                  class="form-control"
+                  style="width: 110px"
+                />
+                <input
+                  type="text"
+                  [(ngModel)]="dateToStr"
+                  (ngModelChange)="onConfigChange()"
+                  placeholder="To"
+                  class="form-control"
+                  style="width: 110px"
+                />
               </div>
             </div>
 
             <!-- Working Mode -->
             <div class="form-group">
               <label class="form-label">💼 Working</label>
-              <select [(ngModel)]="ganttConfig.workingMode" (change)="onConfigChange()" class="form-control">
+              <select
+                [(ngModel)]="ganttConfig.workingMode"
+                (change)="onConfigChange()"
+                class="form-control"
+              >
                 @for (w of workingModes; track w) {
                   <option [value]="w">{{ w }}</option>
                 }
@@ -233,24 +352,41 @@
             <!-- Non-working Mode -->
             <div class="form-group">
               <label class="form-label">🌴 Non-working</label>
-              <select [(ngModel)]="ganttConfig.nonWorkingMode" (change)="onConfigChange()" class="form-control">
+              <select
+                [(ngModel)]="ganttConfig.nonWorkingMode"
+                (change)="onConfigChange()"
+                class="form-control"
+              >
                 @for (nw of nonWorkingModes; track nw) {
                   <option [value]="nw">{{ nw }}</option>
                 }
               </select>
             </div>
 
-
             <!-- Dependencies -->
             <div class="form-group">
               <label class="form-label">🔗 Dependencies</label>
               <div class="button-group">
-                <button (click)="ganttConfig.dependenciesEnabled = !ganttConfig.dependenciesEnabled; onConfigChange()"
-                        class="btn" [style.background-color]="ganttConfig.dependenciesEnabled ? '#2563eb' : '#64748b'">
+                <button
+                  (click)="
+                    ganttConfig.dependenciesEnabled = !ganttConfig.dependenciesEnabled;
+                    onConfigChange()
+                  "
+                  class="btn"
+                  [style.background-color]="ganttConfig.dependenciesEnabled ? '#2563eb' : '#64748b'"
+                >
                   Enabled
                 </button>
-                <button (click)="ganttConfig.dependenciesConflicts = !ganttConfig.dependenciesConflicts; onConfigChange()"
-                        class="btn" [style.background-color]="ganttConfig.dependenciesConflicts ? '#ef4444' : '#64748b'">
+                <button
+                  (click)="
+                    ganttConfig.dependenciesConflicts = !ganttConfig.dependenciesConflicts;
+                    onConfigChange()
+                  "
+                  class="btn"
+                  [style.background-color]="
+                    ganttConfig.dependenciesConflicts ? '#ef4444' : '#64748b'
+                  "
+                >
                   Conflicts
                 </button>
               </div>
@@ -270,22 +406,37 @@
             <div class="form-group">
               <label class="form-label">➕ Add Overlapping Task</label>
               <div class="button-group">
-                <input type="number" [(ngModel)]="targetRowIndex" min="0" max="20" class="form-control" style="width: 70px;" placeholder="Row Index">
+                <input
+                  type="number"
+                  [(ngModel)]="targetRowIndex"
+                  min="0"
+                  max="20"
+                  class="form-control"
+                  style="width: 70px"
+                  placeholder="Row Index"
+                />
                 <button (click)="addOverlapTask()" class="btn btn-teal">Add</button>
               </div>
             </div>
-
           </div>
         </div>
       }
     </div>
 
     <!-- ACCORDION PANEL 2: GANTT CHART -->
-    <div class="panel-card" style="display: flex; flex-direction: column; flex: 1;">
-      <div style="padding: 0.5rem; flex: 1; display: flex; flex-direction: column; min-height: 520px;">
-        <gantt-chart [(api)]="ganttApi" [config]="ganttConfig" [rows]="ganttRows" [timespans]="ganttTimespans"
-                     (taskClick)="onTaskClick($event)" (rowClick)="onRowClick($event)"
-                     style="flex: 1; min-height: 500px; display: flex; flex-direction: column;"></gantt-chart>
+    <div class="panel-card" style="display: flex; flex-direction: column; flex: 1">
+      <div
+        style="padding: 0.5rem; flex: 1; display: flex; flex-direction: column; min-height: 520px"
+      >
+        <ec-gantt
+          [(api)]="ganttApi"
+          [config]="ganttConfig"
+          [rows]="ganttRows"
+          [timespans]="ganttTimespans"
+          (taskClick)="onTaskClick($event)"
+          (rowClick)="onRowClick($event)"
+          style="flex: 1; min-height: 500px; display: flex; flex-direction: column"
+        ></ec-gantt>
       </div>
     </div>
 
@@ -298,7 +449,6 @@
 
       @if (!liveCollapsed) {
         <div class="inspector-panel-grid">
-          
           <!-- Row Object Inspector -->
           <div class="inspector-box">
             <div class="inspector-box-header">
@@ -309,7 +459,9 @@
                 }
               </select>
             </div>
-            <textarea readonly class="inspector-textarea inspector-textarea-row">{{ selectedRowJson }}</textarea>
+            <textarea readonly class="inspector-textarea inspector-textarea-row">{{
+              selectedRowJson
+            }}</textarea>
           </div>
 
           <!-- Task Object Inspector -->
@@ -324,27 +476,47 @@
                 }
               </select>
             </div>
-            <textarea readonly class="inspector-textarea inspector-textarea-task">{{ selectedTaskJson }}</textarea>
+            <textarea readonly class="inspector-textarea inspector-textarea-task">{{
+              selectedTaskJson
+            }}</textarea>
           </div>
-
         </div>
       }
     </div>
 
     <!-- Footer -->
     <footer class="app-footer">
-      ec-gantt (Angular 22) | MIT License | <a href="https://github.com/erkancomez/ec-gantt" target="_blank" style="color: inherit; text-decoration: underline;">erkancomez/ec-gantt</a>
+      ec-gantt (Angular 22) | MIT License |
+      <a
+        href="https://github.com/erkancomez/ec-gantt"
+        target="_blank"
+        style="color: inherit; text-decoration: underline"
+        >erkancomez/ec-gantt</a
+      >
     </footer>
-
   </div>
 </div>
 
 <!-- TemplateRef Example for Create Concept Task -->
 <ng-template #conceptTaskTemplate let-task="task">
-  <div style="display: flex; align-items: center; gap: 6px; color: #0f172a; font-weight: 600;">
-    <span (click)="onTaskIconClick(task)"
-          style="cursor: pointer; padding: 2px 5px; background: rgba(255, 255, 255, 0.6); border-radius: 4px; display: inline-flex; align-items: center; justify-content: center; font-size: 0.85rem; border: 1px solid rgba(0,0,0,0.15); box-shadow: 0 1px 2px rgba(0,0,0,0.1); user-select: none;"
-          title="Ayarlar ikonuna tıkla (Alert fırlatır)">
+  <div style="display: flex; align-items: center; gap: 6px; color: #0f172a; font-weight: 600">
+    <span
+      (click)="onTaskIconClick(task)"
+      style="
+        cursor: pointer;
+        padding: 2px 5px;
+        background: rgba(255, 255, 255, 0.6);
+        border-radius: 4px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.85rem;
+        border: 1px solid rgba(0, 0, 0, 0.15);
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        user-select: none;
+      "
+      title="Ayarlar ikonuna tıkla (Alert fırlatır)"
+    >
       ⚙️
     </span>
     <span>{{ task.name }}</span>

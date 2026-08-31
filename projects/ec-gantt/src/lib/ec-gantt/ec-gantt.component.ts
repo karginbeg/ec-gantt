@@ -1,22 +1,22 @@
-import { Component, Input, Output, EventEmitter, inject, ElementRef, AfterViewInit, OnDestroy, ViewEncapsulation } from '@angular/core';
-import { GanttService } from '../services/gantt.service';
-import { GanttApi } from '../services/gantt-api';
-import { GanttConfig, GanttRow, GanttTimespan, GanttTask } from '../models/gantt.models';
-import { GanttHeaderComponent } from '../gantt-header/gantt-header.component';
-import { GanttBodyComponent } from '../gantt-body/gantt-body.component';
-import { GanttSideComponent } from '../gantt-side/gantt-side.component';
 import { CommonModule } from '@angular/common';
+import { AfterViewInit, Component, ElementRef, EventEmitter, inject, Input, OnDestroy, Output, ViewEncapsulation } from '@angular/core';
+import { GanttBodyComponent } from '../gantt-body/gantt-body.component';
+import { GanttHeaderComponent } from '../gantt-header/gantt-header.component';
+import { GanttSideComponent } from '../gantt-side/gantt-side.component';
+import { GanttConfig, GanttRow, GanttTask, GanttTimespan } from '../models/gantt.models';
+import { GanttApi } from '../services/gantt-api';
+import { GanttService } from '../services/gantt.service';
 
 @Component({
-  selector: 'gantt-chart',
+  selector: 'ec-gantt',
   standalone: true,
   imports: [CommonModule, GanttHeaderComponent, GanttBodyComponent, GanttSideComponent],
   providers: [GanttService],
-  templateUrl: './gantt-chart.component.html',
-  styleUrls: ['../styles.css', './gantt-chart.component.css'],
+  templateUrl: './ec-gantt.component.html',
+  styleUrls: ['../styles.css', './ec-gantt.component.css'],
   encapsulation: ViewEncapsulation.None
 })
-export class GanttChartComponent implements AfterViewInit, OnDestroy {
+export class EcGantt implements AfterViewInit, OnDestroy {
   @Input() set config(value: Partial<GanttConfig>) {
     this.ganttService.updateConfig(value);
   }
@@ -92,7 +92,7 @@ export class GanttChartComponent implements AfterViewInit, OnDestroy {
       this.resizeObserver.disconnect();
     }
   }
-  
+
   onScroll(event: Event) {
     const el = event.target as HTMLElement;
     const header = this.elementRef.nativeElement.querySelector('.gantt-header-scroll') as HTMLElement;

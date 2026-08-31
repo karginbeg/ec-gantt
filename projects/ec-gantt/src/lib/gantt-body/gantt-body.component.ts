@@ -1,7 +1,7 @@
-import { Component, inject, signal, HostListener, ElementRef, Output, Input, EventEmitter, TemplateRef } from '@angular/core';
-import { GanttService } from '../services/gantt.service';
-import { ComputedGanttTask, GanttDependencyLine, GanttRow, GanttTask } from '../models/gantt.models';
 import { CommonModule } from '@angular/common';
+import { Component, ElementRef, EventEmitter, inject, Input, Output, signal, TemplateRef } from '@angular/core';
+import { ComputedGanttTask, GanttDependencyLine, GanttRow, GanttTask } from '../models/gantt.models';
+import { GanttService } from '../services/gantt.service';
 
 @Component({
   selector: 'gantt-body',
@@ -326,7 +326,7 @@ export class GanttBodyComponent {
 
     // Automatically stop propagation for interactive elements or cursor:pointer elements in task content
     const isInteractive = target.closest('button, a, input, select, textarea, i, svg, path, img, [click], [ng-click], [role="button"], .clickable, [onclick]') !== null ||
-                          window.getComputedStyle(target).cursor === 'pointer';
+      window.getComputedStyle(target).cursor === 'pointer';
 
     if (isInteractive) {
       event.stopPropagation();
@@ -346,7 +346,7 @@ export class GanttBodyComponent {
     if (this.ganttService.config().readOnly) return false;
     if (this.ganttService.config().dependenciesEnabled === false) return false;
     return this.hoveredTask()?.task?.id === task.id ||
-           this.ganttService.linkingSource() != null;
+      this.ganttService.linkingSource() != null;
   }
 
   onTaskMouseEnter(task: ComputedGanttTask, event: MouseEvent) {
@@ -517,9 +517,9 @@ export class GanttBodyComponent {
 
   private getScrollContainer(): HTMLElement | null {
     return this.elementRef.nativeElement.closest('.gantt-body-scroll') ||
-           this.elementRef.nativeElement.closest('.gantt-chart-scroll') ||
-           this.elementRef.nativeElement.closest('.gantt-container') ||
-           this.elementRef.nativeElement.parentElement;
+      this.elementRef.nativeElement.closest('.ec-gantt-scroll') ||
+      this.elementRef.nativeElement.closest('.gantt-container') ||
+      this.elementRef.nativeElement.parentElement;
   }
 
   private startAutoScrollLoop() {

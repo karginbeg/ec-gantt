@@ -1,13 +1,13 @@
 import { CommonModule } from '@angular/common';
 import { AfterViewInit, Component, inject, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { CurrentDateMode, GanttApi, GanttChartComponent, GanttConfig, GanttRow, GanttTimespan, SideMode, SortMode, ViewScale } from 'ec-gantt';
+import { CurrentDateMode, EcGantt, GanttApi, GanttConfig, GanttRow, GanttTimespan, SideMode, SortMode, ViewScale } from 'ec-gantt';
 import { DemoService } from './demo.service';
 
 @Component({
   selector: 'gantt-root',
   standalone: true,
-  imports: [CommonModule, FormsModule, GanttChartComponent],
+  imports: [CommonModule, FormsModule, EcGantt],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })

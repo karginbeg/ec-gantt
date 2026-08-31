@@ -4,7 +4,7 @@
 
 [![npm version](https://img.shields.io/npm/v/ec-gantt.svg?color=blue)](https://www.npmjs.com/package/ec-gantt)
 [![license](https://img.shields.io/npm/l/ec-gantt.svg)](LICENSE)
-[![angular](https://img.shields.io/badge/angular-18%2B%20%7C%2019%2B%20%7C%2020%2B%20%7C%2021%2B-red.svg)](https://angular.dev)
+[![angular](https://img.shields.io/badge/angular-18%2B%20%7C%2019%2B%20%7C%2020%2B%20%7C%2021%2B%20%7C%2022%2B-red.svg)](https://angular.dev)
 
 `ec-gantt` is a modern, lightweight, highly customizable Angular Gantt Chart component built with **Angular Signals** and standalone architecture. It provides an intuitive, high-performance timeline interface for complex project management applications with zero heavy external dependencies.
 
@@ -41,24 +41,25 @@ npm install ec-gantt
 
 ## 🛠️ Quick Start
 
-Import `GanttChartComponent` directly in your Standalone Component:
+Import `EcGantt` directly in your Standalone Component:
 
 ```typescript
 import { Component } from '@angular/core';
-import { GanttChartComponent, GanttConfig, GanttRow, GanttApi } from 'ec-gantt';
+import { EcGantt, GanttConfig, GanttRow, GanttApi } from 'ec-gantt';
 
 @Component({
   selector: 'app-project-planner',
   standalone: true,
-  imports: [GanttChartComponent],
+  imports: [EcGantt],
   template: `
-    <gantt-chart
+    <ec-gantt
       [(api)]="ganttApi"
       [config]="ganttConfig"
       [rows]="ganttRows"
       (taskClick)="onTaskSelected($event)"
-      (rowClick)="onRowSelected($event)">
-    </gantt-chart>
+      (rowClick)="onRowSelected($event)"
+    >
+    </ec-gantt>
   `,
 })
 export class ProjectPlannerComponent {
@@ -75,13 +76,13 @@ export class ProjectPlannerComponent {
     drawTask: true,
     drawTaskFactory: (event, row) => ({
       name: 'New Task (' + row.name + ')',
-      color: '#6366f1'
+      color: '#6366f1',
     }),
     movable: {
       allowMoving: (task) => task.name !== 'Locked Task', // Predicate function
       allowResizing: true,
-      allowRowSwitching: true
-    }
+      allowRowSwitching: true,
+    },
   };
 
   ganttRows: GanttRow[] = [
@@ -149,20 +150,25 @@ onApiReady(api: GanttApi) {
 
 ## ⚙️ Configuration (`GanttConfig`)
 
-| Option | Type | Default | Description |
-| :--- | :--- | :--- | :--- |
-| `viewScale` | `'minute' \| 'hour' \| 'day' \| 'week' \| 'month' \| 'quarter' \| 'year'` | `'day'` | Active timeline view scale. |
-| `columnWidth` | `number` | `55` | Base column width in pixels. |
-| `rowHeight` | `number` | `38` | Base row height in pixels. |
-| `sideWidth` | `number` | `260` | Width of the left side panel. |
-| `sideMode` | `'TreeTable' \| 'Tree' \| 'Table' \| 'Disabled'` | `'TreeTable'` | Display mode for the left side panel. |
-| `drawTask` | `boolean \| ((event: MouseEvent) => boolean)` | `true` | Enables click-drag task creation on empty row spaces. |
-| `drawTaskFactory` | `(event: MouseEvent, row: GanttRow) => Partial<GanttTask>` | `undefined` | Custom factory function generating initial task model properties when drawing. |
-| `movable` | `boolean \| ((event: MouseEvent) => boolean) \| GanttMovableOptions` | `true` | Task movement and resizing rules configuration. |
-| `groupDisplayMode` | `'group' \| 'overview' \| 'promoted' \| 'disabled'` | `'group'` | Rendering mode for group/parent rows. |
-| `taskOverlapMode` | `'cascade' \| 'underneath'` | `'cascade'` | Layout strategy for overlapping task bars within a row. |
-| `magnet` | `boolean` | `true` | Snap task dates and positions to grid boundaries. |
-| `readOnly` | `boolean` | `false` | Read-only mode disabling task dragging, resizing, and creation. |
+| Option                  | Type                                                                      | Default       | Description                                                                    |
+| :---------------------- | :------------------------------------------------------------------------ | :------------ | :----------------------------------------------------------------------------- |
+| `viewScale`             | `'minute' \| 'hour' \| 'day' \| 'week' \| 'month' \| 'quarter' \| 'year'` | `'day'`       | Active timeline view scale.                                                    |
+| `columnWidth`           | `number`                                                                  | `55`          | Base column width in pixels.                                                   |
+| `rowHeight`             | `number`                                                                  | `38`          | Base row height in pixels.                                                     |
+| `sideWidth`             | `number`                                                                  | `260`         | Width of the left side panel.                                                  |
+| `sideMode`              | `'TreeTable' \| 'Tree' \| 'Table' \| 'Disabled'`                          | `'TreeTable'` | Display mode for the left side panel.                                          |
+| `currentDate`           | `'none' \| 'line' \| 'column'`                                            | `'none'`      | Display mode for the current date indicator.                                   |
+| `drawTask`              | `boolean \| ((event: MouseEvent) => boolean)`                             | `true`        | Enables click-drag task creation on empty row spaces.                          |
+| `drawTaskFactory`       | `(event: MouseEvent, row: GanttRow) => Partial<GanttTask>`                | `undefined`   | Custom factory function generating initial task model properties when drawing. |
+| `movable`               | `boolean \| ((event: MouseEvent) => boolean) \| GanttMovableOptions`      | `true`        | Task movement and resizing rules configuration.                                |
+| `groupDisplayMode`      | `'group' \| 'overview' \| 'promoted' \| 'disabled'`                       | `'group'`     | Rendering mode for group/parent rows.                                          |
+| `taskOverlapMode`       | `'cascade' \| 'underneath'`                                               | `'cascade'`   | Layout strategy for overlapping task bars within a row.                        |
+| `dependenciesEnabled`   | `boolean`                                                                 | `false`       | Enable drawing and displaying task dependencies.                               |
+| `dependenciesConflicts` | `boolean`                                                                 | `false`       | Highlight dependency conflicts (e.g., circular dependencies or timing issues). |
+| `workingMode`           | `'visible' \| 'hidden' \| 'background'`                                   | `'visible'`   | Display mode for working hours/days.                                           |
+| `nonWorkingMode`        | `'visible' \| 'hidden' \| 'cropped'`                                      | `'visible'`   | Display mode for non-working hours/days.                                       |
+| `magnet`                | `boolean`                                                                 | `true`        | Snap task dates and positions to grid boundaries.                              |
+| `readOnly`              | `boolean`                                                                 | `false`       | Read-only mode disabling task dragging, resizing, and creation.                |
 
 ---
 
@@ -186,6 +192,7 @@ npm publish --access public
 ## 👨‍💻 Author
 
 **Erkan Çömez**
+
 - **GitHub**: [@erkancomez](https://github.com/erkancomez)
 - **Repository**: [erkancomez/ec-gantt on GitHub](https://github.com/erkancomez/ec-gantt)
 
